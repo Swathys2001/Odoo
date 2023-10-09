@@ -1,0 +1,9 @@
+id,name,model_id/id,group_id/id,perm_read,perm_write,perm_create,perm_unlink
+access_event_management_all,access_event.management,model_event_management,base.group_user,1,1,1,1
+access_event_management_booking_all,access_event.management.booking,model_event_management_booking,base.group_user,1,1,1,1
+access_event_management_config_all,access_event.management.config,model_event_management_config,base.group_user,1,1,1,1
+access_event_management_config_other_info_all,access_event.management.config.other.info,model_event_management_config_other_info,base.group_user,1,1,1,1
+access_event_catering_all,access_event.catering,model_event_catering,base.group_user,1,1,1,1
+access_catering_menu_all,access_catering.menu,model_catering_menu,base.group_user,1,1,1,1
+access_catering_food_all,access_catering.food,model_catering_food,base.group_user,1,1,1,1
+access_event_report_all,access_event.report,model_event_report,base.group_user,1,1,1,1

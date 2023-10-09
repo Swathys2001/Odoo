@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--If the booking logged then redirect to this page-->
+<odoo>
+    <template id="event_form">
+        <t t-call="website.layout">
+            <div class="event_view" align="center">
+            <t t-foreach="events" t-as="event">
+                <img t-attf-src="data:image/jpeg;base64,{{event.image}}" alt="image"/>
+            <h4>
+                <i t-esc="event.event_type_id.name"
+                   t-att-value="event.event_type_id"/>
+            </h4>
+            <br/>
+            <i>
+                <p>Customer:</p>
+                <p t-esc="event.customer_id.name"
+                   t-att-value="event.customer_id"/>
+                <br/>
+                <p>Booking date:</p>
+                <p t-esc="event.booking_date"/>
+                <br/>
+                <p>Start date:</p>
+                <p t-esc="event.event_start_date"/>
+                <br/>
+                <p>End date:</p>
+                <p t-esc="event.event_end_date"/>
+            </i>
+        </t>
+    </div>
+</t>
+
+        </template>
+        </odoo>

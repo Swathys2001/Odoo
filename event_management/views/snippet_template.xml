@@ -1,0 +1,31 @@
+<odoo>
+    <template id="external_snippets" inherit_id="website.snippets" priority="8">
+        <xpath expr="//div[@id='snippet_feature']//t[@t-snippet][last()]"
+               position="after">
+            <t t-snippet="event_management.basic_snippet"/>
+        </xpath>
+    </template>
+    <template id="basic_snippet" name="Latest Events">
+        <section class="container event_view" id="view">
+            <div class="row" id="latest-event">
+                <div class="col-md-12">
+                    <br/>
+                    <br/>
+                    <center>
+                        <h1>
+                            <b>
+                                <i>Latest Events</i>
+                            </b>
+                        </h1>
+                    </center>
+                    <div class="card-group" style="padding:25px 30px">
+                        <div class="card">
+                            <div id="carousel">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </template>
+</odoo>

@@ -1,0 +1,11 @@
+<odoo>
+<record id="action_event_booking_form" model="ir.actions.report">
+        <field name="name">event report</field>
+        <field name="model">event.report</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">event_management.event_management_booking_report</field>
+        <field name="report_file">event_management.event_management_booking_report</field>
+        <field name="binding_model_id" ref="model_event_report"/>
+        <field name="binding_type">report</field>
+    </record>
+</odoo>

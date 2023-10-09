@@ -1,0 +1,19 @@
+<odoo>
+<!--    Used to add Url on website nav bar-->
+    <data>
+       <record id="event_booking" model="website.menu">
+           <field name="name">Event Booking</field> <!-- Name of the menu-->
+           <field name="url">/event_booking</field>
+           <field name="parent_id" ref="website.main_menu"/>
+           <field name="sequence" type="int">80</field>
+              <!--sequence of the menu-->
+       </record>
+        <record id="event_booking_details" model="website.menu">
+           <field name="name">Show booking</field> <!-- Name of the menu-->
+           <field name="url">/event_booking_details</field>
+           <field name="parent_id" ref="website.main_menu"/>
+           <field name="sequence" type="int">85</field>
+              <!--sequence of the menu-->
+       </record>
+    </data>
+</odoo>

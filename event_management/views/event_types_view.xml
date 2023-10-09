@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!--    This view is used for showing submenu of event management -->
+    <record id="event_mgmt_type_action" model="ir.actions.act_window">
+        <field name="name">Event Types</field>
+        <field name="res_model">event.management</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <!-- Used for showing tree view of event management -->
+    <record id="event_management_view_tree" model="ir.ui.view">
+        <field name="name">event.management.tree</field>
+        <field name="model">event.management</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="event_code"/>
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+    <!-- Used for showing form view of event management -->
+    <record id="event_management_view_form" model="ir.ui.view">
+        <field name="name">event.management.form</field>
+        <field name="model">event.management</field>
+        <field name="arch" type="xml">
+            <form string="Test">
+                <sheet>
+                    <group>
+                        <field name="name" style="width:40%%"/>
+                        <field name="event_code"/>
+                        <field name="event_img" widget="image"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+</odoo>

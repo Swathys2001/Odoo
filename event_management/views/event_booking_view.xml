@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- used for showing submenu of event management -->
+    <record id="event_mgmt_booking_action" model="ir.actions.act_window">
+        <field name="name">Event Booking</field>
+        <field name="res_model">event.management.booking</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <!-- Used for showing tree view of event booking  -->
+    <record id="event_management_booking_view_tree" model="ir.ui.view">
+        <field name="name">event.management.booking.tree</field>
+        <field name="model">event.management.booking</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="event_type_id"/>
+                <field name="customer_id"/>
+                <field name="booking_date"/>
+                <field name="event_start_date"/>
+                <field name="event_end_date"/>
+            </tree>
+        </field>
+    </record>
+    <!-- Used for showing form view of event booking - when select a customer then address is automatically generated, chatter section added-->
+    <record id="event_management_booking_view_form" model="ir.ui.view">
+        <field name="name">event.management.booking.form</field>
+        <field name="model">event.management.booking</field>
+        <field name="arch" type="xml">
+            <form string="Test">
+                <header>
+                   <button type="object" name="catering_service" string="Catering service" class="oe_highlight" states="draft" attrs="{'invisible':[('catering_id','!=',False)]}"/>
+                    <button type="object" name="booking_confirm_button" string="Confirm" states="draft"/>
+                     <button type="object" name="create_invoice" string="Create invoice" class="oe_highlight" attrs="{'invisible':['|',('catering_id','==',False),('state','==','invoice')]}"/>
+                     <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <div name="button_box" position="inside">
+                        <button class="oe_stat_button" type="object"
+                                name="catering_service_button"
+                                icon="fa-cutlery"
+                                attrs="{'invisible':[('catering_id','==',False)]}">
+                            <div class="o_stat_info o_field_widget">
+                                <span class="o_stat_text">Catering service
+                                </span>
+                            </div>
+                        </button>
+                        <button class="oe_stat_button" type="object"
+                                name="invoice_button"
+                                icon="fa-rupee"
+                                states="invoice">
+                            <div class="o_stat_info o_field_widget">
+                                <span class="o_stat_text">Invoice
+                                </span>
+                            </div>
+                        </button>
+                    </div>
+                         <div>
+                            <widget name="web_ribbon" title="Paid" attrs="{'invisible':[('ribbon','!=',True)]}"/>
+                             <field name="ribbon" invisible="1"/>
+
+                        </div>
+
+                    <div>
+                        <h1>
+                            <field name="name"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="catering_id" invisible="1"/>
+                            <field name="event_type_id"
+                                   options="{'no_create': True, 'no_create_edit':True}" attrs="{'readonly':[('state','!=','draft')]}"/>
+                            <field name="customer_id"
+                                   widget="res_partner_many2one"
+                                   context="{ 'show_address': 1}"
+                                   options="{'always_reload':'true'}" attrs="{'readonly':[('state','!=','draft')]}"/>
+                            <field name="booking_date" attrs="{'readonly':[('state','!=','draft')]}"/>
+                        </group>
+                        <group>
+                            <field name="image" widget="image"/>
+                            <field name="event_start_date" attrs="{'readonly':[('state','!=','draft')]}"/>
+                            <field name="event_end_date" attrs="{'readonly':[('state','!=','draft')]}"/>
+                            <field name="duration" force_save="1"/>
+                        </group>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+</odoo>

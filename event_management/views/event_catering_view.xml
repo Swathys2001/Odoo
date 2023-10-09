@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!--    This view is used for showing submenu of event management -->
+    <record id="event_catering_action" model="ir.actions.act_window">
+        <field name="name">Catering</field>
+        <field name="res_model">event.catering</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <!-- Used for showing tree view of catering -->
+    <record id="event_catering_view_tree" model="ir.ui.view">
+        <field name="name">event.catering.tree</field>
+        <field name="model">event.catering</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="event_id"/>
+                <field name="booking_date"/>
+                <field name="event_start_date"/>
+                <field name="event_end_date"/>
+                <field name="guests"/>
+            </tree>
+        </field>
+    </record>
+    <!-- Used for showing form view of catering - here we can see different pages for category and calculate total for each page-->
+    <record id="event_catering_view_form" model="ir.ui.view">
+        <field name="name">event.catering.form</field>
+        <field name="model">event.catering</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                       <button type="object" name="delivery_button" string="Delivery" states="confirmed" class="oe_highlight"/>
+                       <button type="object" name="confirm_button" string="Confirm" class="oe_highlight" states="draft"/>
+                       <field name="state" widget="statusbar" statusbar_visible="draft,confirmed,delivered"/>
+                </header>
+                <sheet>
+                        <div>
+                            <widget name="web_ribbon" title="Paid" attrs="{'invisible':[('invoice_ribbon','!=',True)]}"/>
+                            <field name="invoice_ribbon" invisible="1"/>
+                        </div>
+                    <div>
+                        <h1>
+                            <field name="name"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="event_id"
+                                   options="{'no_create': True, 'no_create_edit':True}" attrs="{'readonly':[('state','!=','draft')]}"/>
+                            <field name="booking_date"/>
+                            <field name="event_start_date"/>
+                            <field name="event_end_date"/>
+                            <field name="guests" attrs="{'readonly':[('state','!=','draft')]}"/>
+                            <field name="welcome_drink" attrs="{'readonly':[('state','!=','draft')]}"/>
+                        </group>
+                        <group>
+                            <field name="break_fast" attrs="{'readonly':[('state','!=','draft')]}" widget="bool_badge"/>
+                            <field name="lunch" attrs="{'readonly':[('state','!=','draft')]}"/>
+                            <field name="dinner" attrs="{'readonly':[('state','!=','draft')]}"/>
+                            <field name="snacks" attrs="{'readonly':[('state','!=','draft')]}"/>
+                            <field name="beverages" attrs="{'readonly':[('state','!=','draft')]}"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Welcome drinks"
+                              attrs="{'invisible':[('welcome_drink','=', False)]}">
+                            <field name="welcome_drink_ids" nolabel="1">
+                                <tree editable="bottom">
+                                   <field name="item_id" domain="[('category','=','Welcome_drink')]"/>
+                                    <field name="quantity"/>
+                                    <field name="uom"/>
+                                    <field name="unit_price"/>
+                                     <field name="company_id" invisible="1"/>
+                                    <field name="currency_id" invisible="1"/>
+                                    <field name="subtotal" sum="Total" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                                </tree>
+                            </field>
+                            <group>
+                                 <field name="company_id" invisible="1"/>
+                                <field name="currency_id" invisible="1"/>
+                            </group>
+                            <div  style="margin-left: 90%">
+                               <group>
+                                <field name="welcome_drink_total" invisible="1"/>
+                                <field name="grand_total">Grand total</field>
+                                </group>
+                            </div>
+                        </page>
+                        <page string="Break fast"
+                              attrs="{'invisible':[('break_fast','=', False)]}">
+                            <field name="break_fast_ids" nolabel="1">
+                                <tree editable="bottom">
+                                   <field name="item_id" domain="[('category','=','Breakfast')]"/>
+                                    <field name="quantity"/>
+                                    <field name="uom"/>
+                                    <field name="unit_price"/>
+                                     <field name="company_id" invisible="1"/>
+                                    <field name="currency_id" invisible="1"/>
+                                    <field name="subtotal" sum="Total" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                                </tree>
+                            </field>
+                               <group>
+                                   <field name="company_id" invisible="1"/>
+                                   <field name="currency_id" invisible="1"/>
+                               </group>
+                                   <div style="margin-left: 90%">
+                                       <group>
+                                           <field name="break_fast_total" invisible="1"/>
+                                           <field name="grand_total">Grand total</field>
+                                       </group>
+                                   </div>
+                        </page>
+                        <page string="Lunch"
+                              attrs="{'invisible':[('lunch','=', False)]}">
+                        <field name="lunch_ids" nolabel="1">"
+                                <tree editable="bottom">
+                                    <field name="item_id" domain="[('category','=','Lunch')]"/>
+                                    <field name="quantity"/>
+                                    <field name="uom"/>
+                                    <field name="unit_price"/>
+                                    <field name="company_id" invisible="1"/>
+                                    <field name="currency_id" invisible="1"/>
+                                    <field name="subtotal" sum="Total" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                                </tree>
+                        </field>
+                            <group>
+                                 <field name="company_id" invisible="1"/>
+                                <field name="currency_id" invisible="1"/>
+                            </group>
+                             <div style="margin-left: 90%">
+                                   <group>
+                                       <field name="lunch_total" invisible="1"/>
+                                       <field name="grand_total">Grand total</field>
+                                   </group>
+                             </div>
+                        </page>
+                        <page string="Dinner"
+                              attrs="{'invisible':[('dinner','=', False)]}">
+                            <field name="dinner_ids" nolabel="1">
+                                <tree editable="bottom">
+                                    <field name="item_id" domain="[('category','=','Dinner')]"/>
+                                    <field name="quantity"/>
+                                    <field name="uom"/>
+                                    <field name="unit_price"/>
+                                    <field name="company_id" invisible="1"/>
+                                    <field name="currency_id" invisible="1"/>
+                                    <field name="subtotal" sum="Total" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                                </tree>
+                        </field>
+                            <group>
+                                 <field name="company_id" invisible="1"/>
+                                <field name="currency_id" invisible="1"/>
+                            </group>
+                            <div style="margin-left: 90%">
+                                   <group>
+                                       <field name="dinner_total" invisible="1"/>
+                                       <field name="grand_total">Grand total</field>
+                                   </group>
+                             </div>
+                        </page>
+                        <page string="Snacks"
+                              attrs="{'invisible':[('snacks','=', False)]}">
+                            <field name="snacks_ids" nolabel="1">
+                                <tree editable="bottom">
+                                    <field name="item_id" domain="[('category','=','Snacks_and_drinks')]"/>
+                                    <field name="quantity"/>
+                                    <field name="uom"/>
+                                    <field name="unit_price"/>
+                                     <field name="company_id" invisible="1"/>
+                                    <field name="currency_id" invisible="1"/>
+                                    <field name="subtotal" sum="Total" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                                </tree>
+                        </field>
+                            <group>
+                                <field name="company_id" invisible="1"/>
+                                <field name="currency_id" invisible="1"/>
+                            </group>
+                            <div style="margin-left: 90%">
+                                   <group>
+                                       <field name="snacks_total" invisible="1"/>
+                                       <field name="grand_total">Grand total</field>
+                                   </group>
+                             </div>
+                        </page>
+                        <page string="Beverages"
+                              attrs="{'invisible':[('beverages','=', False)]}">
+                            <field name="beverages_ids" nolabel="1">
+                                <tree editable="bottom">
+                                    <field name="item_id"
+                                           domain="[('category','=','Beverages')]"/>
+                                    <field name="quantity"/>
+                                    <field name="uom"/>
+                                    <field name="unit_price"/>
+                                    <field name="company_id" invisible="1"/>
+                                    <field name="currency_id" invisible="1"/>
+                                    <field name="subtotal" sum="Total" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                                </tree>
+                            </field>
+                            <group>
+                                 <field name="company_id" invisible="1"/>
+                                <field name="currency_id" invisible="1"/>
+                            </group>
+                            <div style="margin-left: 90%">
+                                   <group>
+                                       <field name="beverages_total" invisible="1"/>
+                                       <field name="grand_total">Grand total</field>
+                                   </group>
+                             </div>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+</odoo>

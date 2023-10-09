@@ -1,0 +1,10 @@
+<templates id="template" xml:space="preserve">
+<!--    used to add a clear button after the product name-->
+    <t t-name="remove_order_line" t-inherit="point_of_sale.Orderline"
+       t-inherit-mode="extension" owl="1">
+        <xpath expr="//t[@t-esc='env.pos.format_currency(props.line.get_display_price())']"
+               position="after">
+              <button t-on-click="ClearSingleLine">x</button>
+        </xpath>
+    </t>
+</templates>

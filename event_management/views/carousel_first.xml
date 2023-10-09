@@ -1,0 +1,22 @@
+<odoo>
+    <template id="external_snippets" inherit_id="website.snippets" priority="8">
+        <xpath expr="//div[@id='snippet_effect']//t[@t-snippet][last()]"
+               position="after">
+            <t t-snippet="event_management.event_carousels"/>
+        </xpath>
+    </template>
+    <template id="event_carousels" name="Latest Events carousel">
+        <section class="oe_structure container dynamic_snippet_blog">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="text-center py-5">
+                        <div class="h3" style="text-align:center">Latest Events
+                        </div>
+                        <div id="carousel">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </template>
+</odoo>

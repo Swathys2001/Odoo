@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_employee_form" model="ir.ui.view">
+<!--        Add a fields in hr_employee-->
+        <field name="name">hr.employee.form</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr.view_employee_form"/>
+        <field name="arch" type="xml">
+            <header>
+                  <button type="object" name="promotion_button" string="Promotion" class="oe_highlight"
+                          attrs="{'invisible':[('last_level','=',True)]}"/>
+
+                 <field name="last_level" invisible="1"/>
+            </header>
+            <xpath expr="//field[@name='coach_id']"
+                   position="after">
+                <field name="level" options="{'no_create': True, 'no_create_edit':True}"/>
+                <field name="salary"/>
+
+            </xpath>
+        </field>
+    </record>
+</odoo>

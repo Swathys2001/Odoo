@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates xml:space="preserve">
+<!--    used to add a new field rating after the product name-->
+   <t t-name="ProductItem" t-inherit="point_of_sale.ProductItem" t-inherit-mode="extension" owl="1">
+     <xpath expr="//t[@t-if='props.product.image_128']" position="before">
+          <br/>
+         <label style="color:blue"><i class="fa fa-star"/><t t-esc="props.product.rating"/></label>
+      </xpath>
+   </t>
+</templates>

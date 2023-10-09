@@ -1,0 +1,8 @@
+<templates id="template" xml:space="preserve">
+<!--    used to add rating after the product name-->
+    <t t-name="OrderReceipt" t-inherit="point_of_sale.OrderLinesReceipt" t-inherit-mode="extension" owl="1">
+          <xpath expr="//t[@t-esc='env.pos.format_currency(line.price_display_one)']" position="after"><br/>
+            <span>Rating:<t t-esc="line.rating"/></span><br/>
+        </xpath>
+    </t>
+</templates>

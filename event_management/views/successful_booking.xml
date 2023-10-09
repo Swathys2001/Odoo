@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--If the booking logged then redirect to this page-->
+<odoo>
+   <template id="complete_booking">
+       <t t-call="website.layout">
+           <br/>
+           <br/>
+           <h3 align="center">Thank you !!</h3>
+             <br/>
+             <br/>
+           <h4 align="center">Event Booked!!!!!!!</h4>
+             <br/>
+             <br/>
+       </t>
+   </template>
+</odoo>

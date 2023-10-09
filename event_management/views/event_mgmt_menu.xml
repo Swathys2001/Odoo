@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<!--    This view is used for showing menu items -->
+        <menuitem id="event_mgmt_root" name="Event Management"/>
+            <menuitem id="event_mgmt_booking_id" name="Event Management" parent="event_mgmt_root"/>
+                <menuitem id="event_mgmt_booking_menu_action" action="event_mgmt_booking_action" parent="event_mgmt_booking_id" sequence="1"/>
+                <menuitem id="event_catering_menu_action" action="event_catering_action" parent="event_mgmt_booking_id" sequence="2"/>
+            <menuitem id="event_mgmt_config_id" name="Configuration" parent="event_mgmt_root"/>
+                <menuitem id="event_mgmt_type_menu_action" action="event_mgmt_type_action"  parent="event_mgmt_config_id" sequence="3"/>
+                <menuitem id="event_mgmt_config_menu_action" action="event_mgmt_config_action"  parent="event_mgmt_config_id" sequence="4" />
+                <menuitem id="catering_menu_menu_action" action="catering_menu_action"  parent="event_mgmt_config_id" sequence="5" />
+             <menuitem id="event_mgmt_reporting_id" name="Report" parent="event_mgmt_root"/>
+                <menuitem id="event_mgmt_report_menu_action" action="event_mgmt_report_action"  parent="event_mgmt_reporting_id" sequence="4"/>
+</odoo>

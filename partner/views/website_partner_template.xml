@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <template id="res_partner_template" name="Partner">
+        <t t-call="website.layout">
+            <div class="container">
+                <span>Hello,
+                    <t t-esc="request.env.user.name"/>
+                </span>
+                <form class="form" action="/create/partner" method="post">
+                    <input type="hidden" name="csrf_token"
+                           t-att-value="request.csrf_token()"/>
+                    <div class="form-group">
+                        <label for="name">Name:</label>
+                        <br/>
+                        <input type="text" name="name" class="form-control"/>
+                        <br/>
+                        <label for="email">Email:</label>
+                        <br/>
+                        <input type="email" name="email" class="form-control"/>
+                        <br/>
+                    </div>
+                    <div class="form-group">
+                        <label for="number">Number:</label>
+                        <br/>
+                        <input type="number" name="phone" class="form-control"/>
+                        <br/>
+                        <label for="street">Street:</label>
+                        <br/>
+                        <input type="text" name="street" class="form-control"/>
+                        <br/>
+                        <label for="country_ids">Country:</label>
+                        <br/>
+                        <select id="country_ids" name="country"
+                                class="form-control">
+                            <t t-foreach="country_ids" t-as="country">
+                                <option t-att-value="country.id">
+                                    <t t-esc="country.name"></t>
+                                </option>
+                            </t>
+                        </select>
+                        <br/>
+                        <button class="btn btn-success" type="submit">Create
+                        </button>
+                        <br/>
+                        <br/>
+                    </div>
+                </form>
+            </div>
+        </t>
+    </template>
+    <template id="website_partner_template" name="Success">
+        <t t-call="website.layout">
+            <div class="container">
+                <div class="row">
+                    <t t-foreach="partner_id" t-as="partner">
+                        <div class="card col-3">
+                            <div class="card-header">
+                                <span t-esc="partner.name"/>
+                            </div>
+                            <div class="card-body">
+                                <span t-field="partner.image_1920"
+                                      t-options="{'widget':'image'}"/>
+                                <div class="card-footer">
+                                    <a t-attf-href="/view/partner/{{slug(partner)}}">
+                                        <button type="button"
+                                                class="btn btn-primary">View
+                                        </button>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </div>
+            </div>
+        </t>
+    </template>
+    <template id="website_partner_view_template" name="Success">
+        <t t-call="website.layout">
+            <div class="container">
+
+        <div class="row">
+                    <t t-foreach="partner_id" t-as="partner">
+                        <div class="card col-3">
+                            <div class="card-header">
+                                <span t-esc="partner.name"/>
+                            </div>
+                            <div class="card-body">
+                                <span t-field="partner.image_1920"
+                                      t-options="{'widget':'image'}"/>
+                                <div class="card-footer">
+                                    <a t-attf-href="/view/partner/{{slug(partner)}}">
+                                        <button type="button"
+                                                class="btn btn-primary">View
+                                        </button>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </div>
+        </div>
+        </t>
+    </template>
+</odoo>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!--This view is used for showing submenu of configuration - catering menu -->
+    <record id="catering_menu_action" model="ir.actions.act_window">
+        <field name="name">Catering Menu</field>
+        <field name="res_model">catering.menu</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <!-- Used for showing tree view catering menu -->
+    <record id="catering_menu_view_tree" model="ir.ui.view">
+        <field name="name">catering.menu.tree</field>
+        <field name="model">catering.menu</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="category"/>
+                <field name="image"/>
+                <field name="uom_id"/>
+                <field name="unit_of_price"/>
+            </tree>
+        </field>
+    </record>
+    <!-- Used for showing form view catering menu -->
+    <record id="catering_menu_view_form" model="ir.ui.view">
+        <field name="name">catering.menu.form</field>
+        <field name="model">catering.menu</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="category"/>
+                            <field name="image"/>
+                        </group>
+                        <group>
+                            <field name="uom_id"/>
+                            <field name="unit_of_price"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+</odoo>

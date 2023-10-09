@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- used to create catering sequence-->
+    <record id="seq_catering" model="ir.sequence">
+        <field name="name">catering sequence</field>
+        <field name="code">catering.sequence</field>
+        <field name="prefix">C00</field>
+        <field name="company_id" eval="False"/>
+        <field name="number_next">001</field>
+    </record>
+     <record id="seq_event_code" model="ir.sequence">
+       <field name="name">event sequence</field>
+       <field name="code">event.sequence</field>
+       <field name="number_next">001</field>
+   </record>
+</odoo>

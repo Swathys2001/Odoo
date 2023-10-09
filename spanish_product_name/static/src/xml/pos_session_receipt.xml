@@ -1,0 +1,8 @@
+<templates id="template" xml:space="preserve">
+<!--    used to add spanish name after the product name-->
+    <t t-name="OrderReceipt" t-inherit="point_of_sale.OrderLinesReceipt" t-inherit-mode="extension" owl="1">
+        <xpath expr="//t[@t-esc='line.product_name_wrapped[0]']" position="after"><br/>
+            <span>Spanish name:<t t-esc="line.spanish_name"/></span><br/>
+        </xpath>
+    </t>
+</templates>

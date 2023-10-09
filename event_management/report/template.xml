@@ -1,0 +1,149 @@
+<odoo>
+<!--    View of template -->
+    <template id="event_management_booking_report">
+        <t t-call="web.html_container">
+            <t t-call="web.external_layout">
+                <t class="page">
+                    <div class="text-center">
+                        <h1>Event Management Report</h1>
+                    </div>
+                    <br/>
+                    <t t-if="event">
+                         <h5>Event Type:</h5>
+                        <t t-foreach="event" t-as="id">
+                            <h4><span t-esc="id"/></h4>
+                        </t>
+                    </t>
+                        <t t-if="date_from">
+                            <h6>Start date:
+                                <span t-esc="date_from"/>
+                            </h6>
+                        </t>
+                        <t t-if="date_end">
+                            <h6>End date:
+                                <span t-esc="date_end"/>
+                            </h6>
+                        </t>
+                        <t t-if="not date_from and not date_to ">
+                            <h6>Date:
+                                <span t-esc="today_date"/>
+                            </h6>
+                        </t>
+                        <table class="table table-bordered mt32">
+                            <thead>
+                                <tr>
+                                    <th name="sl_no" class="text-left">
+                                        <span>Sl.no</span>
+                                    </th>
+                                    <th name="name" class="text-left">
+                                        <span>Event name</span>
+                                    </th>
+                                     <t t-if="event == False"><th name="event_type" class="text-left">
+                                       <span>Event type</span>
+                                    </th></t>
+                                     <th name="customer_id" class="text-left">
+                                        <span>customer name</span>
+                                    </th>
+                                    <th name="booking_date" class="text-left">
+                                        <span>Booking date</span>
+                                    </th>
+                                     <th name="state" class="text-left">
+                                        <span>Status</span>
+                                    </th>
+                                     <th name="total" class="text-left">
+                                        <span>Total</span>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <t t-set="i" t-value="1"/>
+                             <t t-set="total_amt" t-value="0" />
+                             <t t-foreach="report" t-as="id">
+                                 <tr>
+                                     <td>
+                                         <t t-esc="i"/>
+                                         <t t-set="i" t-value="i+1"/>
+                                     </td>
+                                     <td>
+                                         <t t-esc="id['event_name']"/>
+                                     </td>
+                                       <t t-if="event == False"><td>
+                                         <t t-esc="id['type']"/>
+                                       </td></t>
+                                      <td>
+                                         <t t-esc="id['customer']"/>
+                                     </td>
+                                      <td>
+                                         <t t-esc="id['booking_date']"/>
+                                     </td>
+                                      <td>
+                                         <t t-esc="id['state']"/>
+                                     </td>
+                                     <td>
+                                         <t t-esc="id['grand_total']"/>
+                                     </td>
+                                 </tr>
+                                     <t t-set="total_amt" t-value="total_amt + id['grand_total']" />
+                             </t>
+                        </table>
+                    <div class="text-end">
+                        <h5>Total: $<t t-esc="total_amt"/></h5>
+                    </div>
+                    <br/>
+                    <br/>
+                     <t t-if="caterings">
+                         <h3>Catering details:</h3>
+                         <table class="table table-bordered mt32">
+                            <thead>
+                                <tr>
+                                     <th name="name" class="text-left">
+                                        <span>Event name</span>
+                                    </th>
+                                    <th name="item_id" class="text-left">
+                                        <span>Item</span>
+                                    </th>
+                                    <th name="quantity" class="text-left">
+                                       <span>Quantity</span>
+                                    </th>
+                                     <th name="uom" class="text-left">
+                                        <span>UOM</span>
+                                    </th>
+                                    <th name="unit_price" class="text-left">
+                                        <span>Unit price</span>
+                                    </th>
+                                     <th name="subtotal" class="text-left">
+                                        <span>Subtotal</span>
+                                    </th>
+                                </tr>
+                            </thead>
+                         <t t-foreach="report" t-as="i">
+                             <t t-foreach="i['catering']" t-as="id">
+                                 <tr>
+                                     <td>
+                                         <t t-esc="id['name']"/>
+                                     </td>
+                                     <td>
+                                         <t t-esc="id['food']"/>
+                                     </td>
+                                     <td>
+                                         <t t-esc="id['quantity']"/>
+                                       </td>
+                                      <td>
+                                         <t t-esc="id['uom']['en_US']"/>
+                                     </td>
+                                      <td>
+                                         <t t-esc="id['unit_price']"/>
+                                     </td>
+                                      <td>
+                                         <t t-esc="id['subtotal']"/>
+                                     </td>
+                                 </tr>
+                                 </t>
+                             </t>
+                    </table>
+                     </t>
+
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>

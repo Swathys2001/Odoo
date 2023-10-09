@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="promotion_action" model="ir.actions.act_window">
+<!--        Add a menu under employee configuration-->
+        <field name="name">Promotion</field>
+        <field name="res_model">employee.level</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+     <menuitem id="promotion_action_menu_action" action="promotion_action" name="promotion" parent="hr.menu_config_plan_plan" sequence="2"/>
+    <record id="employee_level_tree" model="ir.ui.view">
+<!--        tree view of employee level-->
+        <field name="name">employee.level.tree</field>
+        <field name="model">employee.level</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="level"/>
+                <field name="salary"/>
+            </tree>
+        </field>
+    </record>
+     <record id="employee_level_form" model="ir.ui.view">
+<!--         employee level of form view-->
+        <field name="name">employee.level.form</field>
+        <field name="model">employee.level</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="level" style="width:40%%" />
+                        <field name="salary" style="width:40%%"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+     </record>
+</odoo>

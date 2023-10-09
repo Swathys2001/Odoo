@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!--    This view is used for showing submenu of configuration -->
+    <record id="event_mgmt_config_action" model="ir.actions.act_window">
+        <field name="name">Services</field>
+        <field name="res_model">event.management.config</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <!-- Used for showing tree view of event management configuration -->
+    <record id="event_management_config_view_tree" model="ir.ui.view">
+        <field name="name">event.management.config.tree</field>
+        <field name="model">event.management.config</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+    <!-- Used for showing form view of event management configuration -->
+    <record id="event_management_config_view_form" model="ir.ui.view">
+        <field name="name">event.management.config.form</field>
+        <field name="model">event.management.config</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="name" style="width:40%%" />
+                        <field name="responsible_person_id" style="width:40%%"/>
+                    </group>
+                    <notebook>
+                        <page string="Notes">
+                            <field name="notes"/>
+                        </page>
+                        <page string="Other info">
+                            <field name="other_ids" nolabel="1"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+</odoo>
