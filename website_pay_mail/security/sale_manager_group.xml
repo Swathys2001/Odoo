@@ -1,0 +1,10 @@
+<odoo>
+     <record model="ir.module.category" id="sales_manager_email">
+        <field name="name">Sales manager</field>
+        <field name="description">User access level</field>
+    </record>
+    <record id="sale_order_manager" model="res.groups">
+        <field name="name">Manager</field>
+        <field name="category_id" ref="sales_manager_email"/>
+    </record>
+</odoo>

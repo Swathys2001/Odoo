@@ -1,0 +1,93 @@
+<odoo>
+    <template id="attendance_report_template">
+<!--Template for attendance report-->
+        <t t-call="web.html_container">
+            <t t-call="web.external_layout">
+                <t class="page">
+                    <div class="text-center">
+                        <h1>Attendance Report</h1>
+                    </div>
+                    <br/>
+                    <t t-if="date">
+                        <h6>Date:
+                            <span t-esc="date"/>
+                        </h6>
+                    </t>
+                    <table class="table table-bordered mt32">
+                        <thead>
+                            <tr>
+                                <th name="sl_no" class="text-left">
+                                    <span>Sl.no</span>
+                                </th>
+                                <th name="employee_id" class="text-left">
+                                    <span>Employee name</span>
+                                </th>
+                                <th name="check_in" class="text-left">
+                                    <span>Check in</span>
+                                </th>
+                                <th name="check_out" class="text-left">
+                                    <span>Check out</span>
+                                </th>
+                                <th name="worked_hours" class="text-left">
+                                    <span>Working hours</span>
+                                </th>
+                            </tr>
+                        </thead>
+                        <t t-set="i" t-value="1"/>
+                        <t t-foreach="report" t-as="id">
+                            <tr>
+                                <td>
+                                    <t t-esc="i"/>
+                                    <t t-set="i" t-value="i+1"/>
+                                </td>
+                                <td>
+                                    <t t-esc="id['employee_id']"/>
+                                </td>
+                                <td>
+                                    <t t-esc="id['check_in']"/>
+                                </td>
+                                <td>
+                                    <t t-esc="id['check_out']"/>
+                                </td>
+                                <td>
+                                    <t t-esc="id['worked_hours']"/>
+                                </td>
+                            </tr>
+                        </t>
+                    </table>
+                    <br/>
+                    <br/>
+                    <t t-if="absentees_details">
+                        <h3>Absentees details:</h3>
+                        <table class="table table-bordered mt32">
+                            <thead>
+                                <tr>
+                                    <th name="sl_no" class="text-left">
+                                        <span>Sl.no</span>
+                                    </th>
+                                    <th name="employee_id" class="text-left">
+                                        <span>Employee name</span>
+                                    </th>
+                                </tr>
+                            </thead>
+                             <t t-set="i" t-value="1"/>
+                            <t t-foreach="report" t-as="re">
+                                <t t-foreach="re['absentees']" t-as="id">
+                                    <tr>
+                                        <td>
+                                            <t t-esc="i"/>
+                                            <t t-set="i" t-value="i+1"/>
+                                        </td>
+                                        <td>
+                                            <t t-esc="id['employee_name']"/>
+                                        </td>
+                                    </tr>
+                                </t>
+                            </t>
+                        </table>
+                    </t>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>

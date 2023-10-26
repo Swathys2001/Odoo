@@ -64,7 +64,6 @@ class Reporting(models.TransientModel):
                 'report': report}
         if self.catering:
             for i in report:
-                print(i['id'])
                 catering_query = f"""
                 select ec.id, cf.item_id,cf.quantity,cf.unit_price, cm.name as food, 
                 eb.name,cf.subtotal,uom.name as uom from event_catering as ec

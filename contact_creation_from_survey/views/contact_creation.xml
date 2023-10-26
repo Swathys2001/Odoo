@@ -1,0 +1,13 @@
+<odoo>
+     <record id="contact_relation_tree" model="ir.ui.view">
+<!--        tree view of contact relation -->
+        <field name="name">contact.relation.tree</field>
+        <field name="model">contact.relation</field>
+        <field name="arch" type="xml">
+            <tree editable="bottom">
+                <field name="question_id"/>
+                <field name="contact_fields_id"/>
+            </tree>
+        </field>
+    </record>
+</odoo>

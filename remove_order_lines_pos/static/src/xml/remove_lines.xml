@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--Clear all order button added to pos screen-->
+<!--Clear all orders button added to pos screen-->
 <templates id="template" xml:space="preserve">
   <t t-name="CustomDemoButtons" owl="1">
       <div class="control-button" style="color:red">

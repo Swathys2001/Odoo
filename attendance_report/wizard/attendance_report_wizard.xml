@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+       <record id="daily_attendance_reporting" model="ir.ui.view">
+<!-- Form view of wizard-->
+        <field name="name">attendance.report.form</field>
+        <field name="model">attendance.report</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="date"/>
+                        <field name="absentees"/>
+                    </group>
+                </sheet>
+                <footer>
+                    <button type="object" name="print_report" string="print" class="oe_highlight"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>

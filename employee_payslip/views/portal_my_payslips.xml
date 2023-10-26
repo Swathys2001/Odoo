@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+     <template id="portal_my_payslips" name="My Payslips">
+<!-- Table view for showing payslip details -->
+      <t t-call="portal.portal_layout">
+        <t t-set="breadcrumbs_searchbar" t-value="True"/>
+
+        <t t-call="portal.portal_searchbar">
+            <t t-set="title">Payslips</t>
+        </t>
+        <t t-if="not payslip_data">
+            <p>There are currently no payslips</p>
+        </t>
+        <t t-if="payslip_data" t-call="portal.portal_table">
+            <thead>
+                <tr class="active">
+                    <th>Slip #</th>
+                    <th>Period</th>
+                    <th>Name</th>
+                    <th class="text-center">Print</th>
+                </tr>
+            </thead>
+            <tbody>
+                <t t-foreach="payslip_data" t-as="payslip">
+                    <tr>
+                        <td>
+                            <span t-field="payslip.number"/>
+                        </td>
+                        <td><span t-field="payslip.date_from"/></td>
+                        <td class='d-none d-md-table-cell'><span t-field="payslip.name"/></td>
+                        <td style="text-align:center;">
+                            <a t-attf-href="/report/pdf/hr_payroll_community.report_payslipdetails/#{payslip.id}">
+                            <button class="btn btn-primary">Print payslip</button></a>
+                        </td>
+                    </tr>
+                </t>
+            </tbody>
+        </t>
+      </t>
+    </template>
+</odoo>

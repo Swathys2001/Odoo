@@ -10,7 +10,7 @@ class EventFormReport(models.AbstractModel):
         docs = self.env['event_report'].browse(docids)
         return {
             'doc_ids': docids,
-            'doc_model': 'truck.booking',
+            'doc_model': 'event.booking',
             'docs': docs,
             'data': data,
         }

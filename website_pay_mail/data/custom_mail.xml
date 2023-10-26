@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <record id="email_template_shopping" model="mail.template">
+            <!--            create a new email template for shopping details-->
+            <field name="name">Shopping email template</field>
+            <field name="model_id" ref="sale.model_sale_order"/>
+            <field name="subject">shopping details</field>
+            <field name="body_html" type="html">
+                <div>
+                    <div style="margin: 0px; padding: 0px;">
+                        <p style="margin: 0px; padding: 0px; font-size: 12px;">
+                            Hello,
+                            <br/>
+                            Sale order details of
+                            <span t-esc="object.partner_id.name"/>
+                            <br/>
+                            <br/>
+                            Sale order:
+                            <span t-esc="object.name"/>
+                            <br/>
+                            Sale order items:
+                            <table>
+                                <tr>
+                                    <th>Item</th>
+                                    <th>quantity</th>
+                                    <th>unit.price</th>
+                                </tr>
+                                <t t-foreach="object.order_line" t-as="line">
+                                    <tr>
+                                        <td>
+                                            <t t-esc="line.product_template_id.name"/>
+                                        </td>
+                                        <td>
+                                            <t t-esc="line.product_uom_qty"/>
+                                        </td>
+                                        <td>
+                                            <t t-esc="line.price_unit"/>
+                                        </td>
+                                    </tr>
+                                </t>
+                            </table>
+                            <br/>
+                            Total amount:
+                            <span t-esc="object.amount_total"/>
+                            <br/>
+                        </p>
+                        <br/>
+                        <br/>
+                        <a t-attf-href="/web?#id={{ object.id }}&amp;view_type=form&amp;model=sale.order"
+                           target="_blank"
+                           style="background-color: #875A7B; padding: 8px 16px 8px 16px; text-decoration: none; color: #fff; border-radius: 5px; font-size:13px;">
+                            view sale order
+                        </a>
+                        <br/>
+                        <br/>
+                    </div>
+                    Regards,
+                    <br/>
+                    <span t-esc="object.company_id.name"/>
+                </div>
+            </field>
+        </record>
+    </data>
+</odoo>

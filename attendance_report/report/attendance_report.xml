@@ -1,0 +1,12 @@
+<odoo>
+<record id="action_attendance_report_form" model="ir.actions.report">
+<!--pdf creation and passing datas to attendance_report_template-->
+        <field name="name">attendance report</field>
+        <field name="model">attendance.report</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">attendance_report.attendance_report_template</field>
+        <field name="report_file">attendance_report.attendance_report_template</field>
+        <field name="binding_model_id" ref="model_attendance_report"/>
+        <field name="binding_type">report</field>
+    </record>
+</odoo>
